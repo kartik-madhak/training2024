@@ -44,7 +44,7 @@ console.log(pair2.toString());
 // Todo
 
 
-namespace GenericsTodo {
+export namespace GenericsTodo {
     interface LinearStorage<T> {
         add(item: T): void;
 
