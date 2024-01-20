@@ -4,17 +4,20 @@ import {Pokemon} from "../models/Pokemon";
 export const Homepage = () => {
     const pokemon1: Pokemon = {
         id: 1,
-        name: 'Bulbasaur'
+        name: 'Bulbasaur',
+        type: ['grass', 'poison']
     };
 
     const pokemon2: Pokemon = {
         id: 2,
-        name: 'Charmandar'
+        name: 'Charmandar',
+        type: ['fire']
     };
 
     const pokemon3: Pokemon = {
         id: 3,
-        name: 'Squirtle'
+        name: 'Squirtle',
+        type: ['water']
     };
 
     return (
