@@ -5,10 +5,10 @@ export interface Pokemon {
   weight: number;
 }
 
-export const enum PokemonType {
+export enum PokemonType {
   Grass,
   Fire,
   Water,
   Rock,
-  Other
+  Other,
 }

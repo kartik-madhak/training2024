@@ -1,12 +1,13 @@
 import { Pokemon } from "../types/Pokemon"
 
-interface PokeCardProps {
+export interface PokeCardProps {
   pokemon: Pokemon
 }
 
-const PokeCard = (props: PokeCardProps) => {
-  return (
-    <div>{props.pokemon.name}</div>
+const PokeCard = (input: PokeCardProps) => {
+  return (<>
+    <div>{input.pokemon.name}</div>
+    </>
   )
 }
 
