@@ -10,7 +10,7 @@ const PokeCard = ({ pokemon }: PokeCardProps) => {
   const imageSize = 100;
 
   return (
-    <div className="d-flex flex-column align-items-center bg-primary-subtle rounded-4 pokemon-card p-4">
+    <div className="d-flex flex-column align-items-center bg-primary-subtle rounded-4 pokemon-card p-4 mt-4">
       <div>#{id}</div>
       <img
         src={imageUrl}
