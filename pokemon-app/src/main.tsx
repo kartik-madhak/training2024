@@ -1,4 +1,10 @@
 import ReactDOM from 'react-dom/client'
-import { Home } from './pages/Home'
+import CustomRouter from './CustomRouter'
 
-ReactDOM.createRoot(document.getElementById('root')!).render(<Home />)
+const root = document.getElementById('root')
+if (root === null) {
+  throw new Error('Root element not found')
+}
+ReactDOM.createRoot(root).render(
+    <CustomRouter/>
+)

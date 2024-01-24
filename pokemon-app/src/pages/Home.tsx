@@ -4,7 +4,11 @@ import PokeCard from '../components/PokeCard'
 import { fetchPokemons } from '../api'
 import { type Pokemon } from '../types/Pokemon'
 
-export const Home = (): ReactElement => {
+interface HomeProps {
+  setRoute: (route: string) => void
+}
+
+export const Home = (props: HomeProps): ReactElement => {
   const [index, setIndex] = useState<number>(0)
   const [pokemons, setPokemons] = useState<Pokemon[]>([])
 
@@ -43,6 +47,11 @@ export const Home = (): ReactElement => {
           onClick={nextPokemon}
         >
           Next
+        </button>
+        <button onClick={() => {
+          props.setRoute('about')
+        }}>
+          Change Route
         </button>
       </div>
     </div>
