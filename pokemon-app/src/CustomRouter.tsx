@@ -1,23 +1,23 @@
-import React, { useState, type ReactElement } from 'react'
+import { type ReactNode, type ReactElement, useState } from 'react'
 import { Home } from './pages/Home'
 
-const CustomRouter = (): ReactElement => {
+const CustomRouter = (): ReactNode => {
   const [route, setRoute] = useState<string>('home')
 
   return (
     <>{
-        route === 'home'
-          ? <Home setRoute={setRoute}/>
-          : <About />
+      route === 'home'
+        ? <Home setRoute={setRoute} />
+        : <About />
     }</>
   )
 }
 
 const About = (): ReactElement => {
   return (
-        <div>
-        <h1>About</h1>
-        </div>
+    <div>
+      <h1>About</h1>
+    </div>
   )
 }
 

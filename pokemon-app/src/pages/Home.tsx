@@ -48,7 +48,9 @@ export const Home = (props: HomeProps): ReactElement => {
         >
           Next
         </button>
-        <button onClick={() => {
+        <button
+        className="btn btn-primary mx-1"
+        onClick={() => {
           props.setRoute('about')
         }}>
           Change Route
