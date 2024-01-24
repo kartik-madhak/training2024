@@ -1,4 +1,4 @@
-import ReactDOM from "react-dom/client";
-import { Home } from "./pages/Home";
+import ReactDOM from 'react-dom/client'
+import { Home } from './pages/Home'
 
-ReactDOM.createRoot(document.getElementById("root")!).render(<Home />);
+ReactDOM.createRoot(document.getElementById('root')!).render(<Home />)

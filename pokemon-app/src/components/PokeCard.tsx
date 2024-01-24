@@ -1,13 +1,14 @@
-import { Pokemon, PokemonType } from "../types/Pokemon";
-import "./PokeCard.css";
+import { type ReactElement } from 'react'
+import { type Pokemon, PokemonType } from '../types/Pokemon'
+import './PokeCard.css'
 
 export interface PokeCardProps {
-  pokemon: Pokemon;
+  pokemon: Pokemon
 }
 
-const PokeCard = ({ pokemon }: PokeCardProps) => {
-  const { id, height, imageUrl, name, types, weight } = pokemon;
-  const imageSize = 100;
+const PokeCard = ({ pokemon }: PokeCardProps): ReactElement => {
+  const { id, height, imageUrl, name, types, weight } = pokemon
+  const imageSize = 100
 
   return (
     <div className="d-flex flex-column align-items-center bg-primary-subtle rounded-4 pokemon-card p-4 mt-4">
@@ -22,7 +23,7 @@ const PokeCard = ({ pokemon }: PokeCardProps) => {
       <div>Height: {height} ft</div>
       <div>Weight: {weight} kgs</div>
       <div>
-        Type:{" "}
+        Type:{' '}
         {types.map((type) => (
           <span
             key={type}
@@ -33,26 +34,26 @@ const PokeCard = ({ pokemon }: PokeCardProps) => {
         ))}
       </div>
     </div>
-  );
-};
+  )
+}
 
 const getTypeClassName = (type: PokemonType): string => {
   switch (type) {
     case PokemonType.Grass:
-      return "bg-success text-light";
+      return 'bg-success text-light'
     case PokemonType.Poison:
-      return "bg-dark text-light";
+      return 'bg-dark text-light'
     case PokemonType.Fire:
-      return "bg-danger text-light";
+      return 'bg-danger text-light'
     case PokemonType.Normal:
-      return "bg-secondary text-light";
+      return 'bg-secondary text-light'
     case PokemonType.Water:
-      return "bg-info text-light";
+      return 'bg-info text-light'
     case PokemonType.Rock:
-      return "bg-secondary-subtle";
+      return 'bg-secondary-subtle'
     default:
-      return "bg-secondary";
+      return 'bg-secondary'
   }
-};
+}
 
-export default PokeCard;
+export default PokeCard

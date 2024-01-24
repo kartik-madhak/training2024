@@ -1,39 +1,39 @@
-import { Pokemon, PokemonType } from "./types/Pokemon";
+import { type Pokemon, PokemonType } from './types/Pokemon'
 
 const pokemons: Pokemon[] = [
   {
     id: 1,
-    name: "Bulbasaur",
+    name: 'Bulbasaur',
     types: [PokemonType.Grass, PokemonType.Poison],
     height: 12,
     weight: 23,
     imageUrl:
-      "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/1.png",
+      'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/1.png'
   },
   {
     id: 4,
-    name: "Charmandar",
+    name: 'Charmandar',
     types: [PokemonType.Fire],
     height: 12,
     weight: 23,
     imageUrl:
-      "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/4.png",
+      'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/4.png'
   },
   {
     id: 7,
-    name: "Squirtle",
+    name: 'Squirtle',
     types: [PokemonType.Water],
     height: 12,
     weight: 23,
     imageUrl:
-      "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/7.png",
-  },
-];
+      'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/7.png'
+  }
+]
 
 export const fetchPokemons = async (): Promise<Pokemon[]> => {
-  return new Promise((resolve) => {
+  return await new Promise((resolve) => {
     setTimeout(() => {
-      resolve(pokemons);
-    }, 2000);
-  });
-};
+      resolve(pokemons)
+    }, 2000)
+  })
+}
