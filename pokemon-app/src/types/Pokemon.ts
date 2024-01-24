@@ -15,16 +15,3 @@ export enum PokemonType {
   Poison = "Poison",
   Normal = "Normal",
 }
-
-// export const pokemonTypeMapping = {
-//   [PokemonType.Grass]: "Grass",
-//   [PokemonType.Fire]: "Fire",
-//   [PokemonType.Water]: "Water",
-//   [PokemonType.Rock]: "Rock",
-//   [PokemonType.Poison]: "Poison",
-//   [PokemonType.Normal]: "Normal",
-// };
-
-// export function getDisplayName(pokemonType: PokemonType): string {
-//   return pokemonTypeMapping[pokemonType];
-// }

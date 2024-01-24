@@ -1,40 +1,24 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "../../node_modules/bootstrap/dist/css/bootstrap.min.css";
 import PokeCard from "../components/PokeCard";
-import { Pokemon, PokemonType } from "../types/Pokemon";
+import { fetchPokemons } from "../api";
+import { Pokemon } from "../types/Pokemon";
 
-const pokemons: Pokemon[] = [
-  {
-    id: 1,
-    name: "Bulbasaur",
-    types: [PokemonType.Grass, PokemonType.Poison],
-    height: 12,
-    weight: 23,
-    imageUrl:
-      "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/1.png",
-  },
-  {
-    id: 4,
-    name: "Charmandar",
-    types: [PokemonType.Fire],
-    height: 12,
-    weight: 23,
-    imageUrl:
-      "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/4.png",
-  },
-  {
-    id: 7,
-    name: "Squirtle",
-    types: [PokemonType.Water],
-    height: 12,
-    weight: 23,
-    imageUrl:
-      "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/7.png",
-  },
-];
+
 
 export const Home = () => {
+
   const [index, setIndex] = useState<number>(0);
+  const [pokemons, setPokemons] = useState<Pokemon[]>([]);
+
+  const effectCallback = async () => {
+    const response = await fetchPokemons(); 
+    setPokemons(response);
+  }
+
+  useEffect(() => {
+    effectCallback();
+  }, [])
 
   const nextPokemon = () => setIndex(index + 1);
   const previousPokemon = () => setIndex(index - 1);
@@ -43,14 +27,11 @@ export const Home = () => {
 
   return (
     <div className="container d-flex flex-column align-items-center">
-      <PokeCard key={pokemons[index].name} pokemon={pokemons[index]} />
-
-      {/* {!isFirstPokemon && (
-        <button className="btn btn-primary" onClick={previousPokemon}>
-          Previous Pokemon
-        </button>
-      )}
-      {!isLastPokemon && <button onClick={nextPokemon}>Next Pokemon</button>} */}
+      {pokemons.length > 0 ?
+        <PokeCard key={pokemons[index].name} pokemon={pokemons[index]} />
+        :
+        <div>Loading...</div>
+      }
 
       <div className="mt-4">
         <button
