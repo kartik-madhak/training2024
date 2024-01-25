@@ -2,18 +2,16 @@ import { type ReactElement, useEffect, useState } from 'react'
 import { type Pokemon, PokemonType } from '../types/Pokemon'
 import './PokeCard.css'
 import { fetchPokemonDetails } from '../api.ts'
-
-export interface PokeCardProps {
-  id: number
-}
+import { useParams } from 'react-router-dom'
 
 const imageSize = 150
 
-const PokeCard = ({ id }: PokeCardProps): ReactElement => {
+const PokeCard = (): ReactElement => {
+  const { id } = useParams()
   const [pokemon, setPokemon] = useState<Pokemon>()
 
   const effectCallback = async (): Promise<void> => {
-    const pokemon = await fetchPokemonDetails(id)
+    const pokemon = await fetchPokemonDetails(+(id ?? 0))
     setPokemon(pokemon)
   }
 

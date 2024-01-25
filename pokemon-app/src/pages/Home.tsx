@@ -2,31 +2,20 @@ import { type ReactElement } from 'react'
 import '../../node_modules/bootstrap/dist/css/bootstrap.min.css'
 import PokeInfo from '../components/PokeInfo.tsx'
 import { usePokemonsApi } from '../hooks/usePokemonsApi.ts'
+import { useNavigate } from 'react-router-dom'
+import { PokemonHeader } from '../components/PokemonHeader.tsx'
 
-interface HomeProps {
-  setRoute: (route: string) => void
-}
-
-export const Home = (props: HomeProps): ReactElement => {
-  // const [pokemonDtos, setPokemonDtos] = useState<PokemonDto[]>([])
-
+export const Home = (): ReactElement => {
+  const navigate = useNavigate()
   const { pokemons } = usePokemonsApi()
-
-  // const effectCallback = async (): Promise<void> => {
-  //   const pokemonDtos = await fetchPokemons()
-  //   setPokemonDtos(pokemonDtos)
-  // }
-  //
-  // useEffect(() => {
-  //   void effectCallback().then()
-  // }, [])
 
   return (
         <div className="container">
+            <PokemonHeader/>
             <div className={'row'}>
                 {pokemons.length > 0
                   ? pokemons.map(pokemonDto => <div onClick={() => {
-                    props.setRoute('pokemon/' + pokemonDto.id)
+                    navigate('/pokemons/' + pokemonDto.id)
                   }} key={pokemonDto?.name} className={'col'}>
                         <PokeInfo pokemon={pokemonDto}/>
                     </div>)
@@ -38,7 +27,7 @@ export const Home = (props: HomeProps): ReactElement => {
                 <button
                     className="btn btn-primary mx-1"
                     onClick={() => {
-                      props.setRoute('about')
+                      navigate('about')
                     }}>
                     Change Route
                 </button>
