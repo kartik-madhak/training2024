@@ -1,5 +1,6 @@
 import { type ReactNode, type ReactElement, useState } from 'react'
 import { Home } from './pages/Home'
+import PokeCard from './components/PokeCard.tsx'
 
 const CustomRouter = (): ReactNode => {
   const [route, setRoute] = useState<string>('home')
@@ -8,7 +9,9 @@ const CustomRouter = (): ReactNode => {
     <>{
       route === 'home'
         ? <Home setRoute={setRoute} />
-        : <About />
+        : route?.startsWith('pokemon/')
+          ? <PokeCard id={+route.split('/')[1]}/>
+          : <About />
     }</>
   )
 }

@@ -7,6 +7,12 @@ export interface Pokemon {
   imageUrl: string
 }
 
+export interface PokemonDto {
+  id: number
+  name: string
+  url: string
+}
+
 export enum PokemonType {
   Grass = 'Grass',
   Fire = 'Fire',

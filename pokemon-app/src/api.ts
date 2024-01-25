@@ -1,39 +1,31 @@
-import { type Pokemon, PokemonType } from './types/Pokemon'
+import { type Pokemon, type PokemonDto, PokemonType } from './types/Pokemon'
+import axios from 'axios'
 
-const pokemons: Pokemon[] = [
-  {
-    id: 1,
-    name: 'Bulbasaur',
-    types: [PokemonType.Grass, PokemonType.Poison],
-    height: 12,
-    weight: 23,
-    imageUrl:
-      'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/1.png'
-  },
-  {
-    id: 4,
-    name: 'Charmandar',
-    types: [PokemonType.Fire],
-    height: 12,
-    weight: 23,
-    imageUrl:
-      'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/4.png'
-  },
-  {
-    id: 7,
-    name: 'Squirtle',
-    types: [PokemonType.Water],
-    height: 12,
-    weight: 23,
-    imageUrl:
-      'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/7.png'
+export const fetchPokemons = async (): Promise<PokemonDto[]> => {
+  const results = (await axios.get('https://pokeapi.co/api/v2/pokemon/?limit=20'))?.data?.results
+  return results.map((dto: PokemonDto, index: number) => ({ ...dto, id: index + 1 }))
+}
+
+export const fetchPokemonDetails = async (id: number): Promise<Pokemon> => {
+  const result = (await axios.get('https://pokeapi.co/api/v2/pokemon/' + id))?.data
+  return {
+    id,
+    name: result?.name,
+    height: result?.height,
+    weight: result?.weight,
+    imageUrl: `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${id}.png`,
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
+    types: result.types?.map((typeDto: any) => getPokemonType(typeDto?.type?.name))
+  } as Pokemon
+}
+
+const getPokemonType = (type: string): PokemonType => {
+  switch (type) {
+    case 'grass': return PokemonType.Grass
+    case 'poison': return PokemonType.Poison
+    case 'fire': return PokemonType.Fire
+    case 'water': return PokemonType.Water
+    case 'rock': return PokemonType.Rock
+    default: return PokemonType.Normal
   }
-]
-
-export const fetchPokemons = async (): Promise<Pokemon[]> => {
-  return await new Promise((resolve) => {
-    setTimeout(() => {
-      resolve(pokemons)
-    }, 2000)
-  })
 }
